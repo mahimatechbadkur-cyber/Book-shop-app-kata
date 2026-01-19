@@ -1,8 +1,9 @@
+import BookShopHeaderBar from './components/BookShopHeaderBar.jsx'
 
 function App() {
   return (
     <>
-      <div>Book Shop App</div>
+      <BookShopHeaderBar />
     </>
   )
 }
