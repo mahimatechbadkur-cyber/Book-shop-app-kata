@@ -1,12 +1,25 @@
-import { render, screen } from '@testing-library/react';
-import { describe, it, expect } from 'vitest';
+import { render, screen, cleanup } from '@testing-library/react';
+import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import ShowBookList from '../components/ShowBookList';
 import { dataTestIds, textContent, bookList } from './common/constants';
 import { getImageURL } from  '../utils/getImageURL'
+import { getButton } from './utils/utils';
+import { CartProvider } from '../context/CartProvider';
+
+afterEach(() => {
+  cleanup();
+});
+
+beforeEach(() => {
+  render(
+    <CartProvider>
+      <ShowBookList />
+    </CartProvider>
+  )
+});
 
 describe('ShowBookList component', () => {
   it('render ShowBookList and other UI elements', () => {
-    render(<ShowBookList />);
     expect(screen.getByTestId(dataTestIds.showBookList)).toBeInTheDocument();
     const headerTitle = screen.getByText(textContent.bookListHeaderTitle);
     expect(headerTitle).toBeInTheDocument();
@@ -14,13 +27,10 @@ describe('ShowBookList component', () => {
     expect(innerGrids[0]).toBeInTheDocument();
     const parentGrid = screen.getByTestId(dataTestIds.bookListParentGrid);
     expect(parentGrid).toBeInTheDocument();
-    expect(screen.getByRole('separator')).toBeInTheDocument();
     const bookCards = screen.getAllByTestId(new RegExp(dataTestIds.bookcard));
     expect(bookCards).toHaveLength(bookList.length);
   });
   it('verifies each book card displays the correct image and alt text', () => {
-    render(<ShowBookList />);
-
     bookList.forEach((book) => {
       const card = screen.getByTestId(`${dataTestIds.bookcard}${book.id}`);
       expect(card).toBeInTheDocument();
@@ -28,5 +38,9 @@ describe('ShowBookList component', () => {
       expect(image).toBeInTheDocument();
       expect(image).toHaveAttribute('src', getImageURL(book.title));
     });
+  });
+  it('should render add to cart button', () => {
+    const addButton = getButton(textContent.addIcon);
+    expect(addButton[0]).toBeInTheDocument();
   });
 });

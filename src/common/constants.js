@@ -3,6 +3,8 @@ export const textContent = {
   discountText : 'Discount on different book purchase 2 books - 5% | 3 books - 10% | 4 books - 20% | 5 books - 25%',
   bookListHeaderTitle : 'List of Available Books',
   cartItemListHeaderTitle : 'Your Cart',
+  emptyCartText: 'Your cart is empty',
+  addIcon: 'addIcon'
 }
 
 export const dataTestIds = {
@@ -15,6 +17,7 @@ export const dataTestIds = {
   bookListParentGrid : 'bookListParentGrid',
   bookListInnerGrid : 'bookListInnerGrid',
   bookcard : 'book-card-',
+  uniqueItemCount : 'uniqueItemCount',
 }
 export const bookList = [
   { id: 1,title: 'Clean Code', price: 50 },

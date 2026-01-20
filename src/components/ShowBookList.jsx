@@ -6,8 +6,21 @@ import { CardActionArea } from '@mui/material';
 import { bookList, dataTestIds, textContent } from '../common/constants'; 
 import Divider from '@mui/material/Divider';
 import { getImageURL } from '../utils/getImageURL';
+import CardActions from '@mui/material/CardActions';
+import IconButton from '@mui/material/IconButton';
+import AddIcon from '@mui/icons-material/Add';
+import { useCart } from '../context/CartProvider';
+
 
 function ShowBookList() {
+  const { addToCart } = useCart();
+  const BookActions = ({ book }) => (
+    <>
+      <IconButton onClick={() => addToCart(book)}  aria-label="addIcon" color="primary" size="small">
+        <AddIcon />
+      </IconButton>
+    </>
+  );
   const BookList = ({ book}) => (
     <Grid size={{ xs: 12, sm: 4 }} key={book.id} data-testid={dataTestIds.bookListInnerGrid}>
       <Card variant="outlined" data-testid={`${dataTestIds.bookcard}${book.id}`}>
@@ -19,6 +32,12 @@ function ShowBookList() {
             alt={book.title}
           />
         </CardActionArea>
+        <Divider />
+        <CardActions key={book.id}>
+          <BookActions 
+            book={book}  
+          />
+        </CardActions>
       </Card>
     </Grid>
   );
