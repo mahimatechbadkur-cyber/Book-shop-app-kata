@@ -38,4 +38,15 @@ describe('BookShopHomePage component', () => {
     expect(itemCards[0]).toHaveTextContent(bookList[0].title);
     expect(screen.getByText(`${textContent.quantityText}: 1`, { exact: false })).toBeInTheDocument();
   });
+  it('item quantity should get decreased on decrease button click',  async() => {
+    const addButton = getButton(textContent.addIcon);
+    expect(addButton[0]).toBeInTheDocument();
+    clickButton(addButton, 0);
+    clickButton(addButton, 0);
+    expect(screen.getByText(`${textContent.quantityText}: 2`, { exact: false })).toBeInTheDocument();
+    const decreaseButton = getButton(textContent.decreaseIcon);
+    expect(decreaseButton[0]).toBeInTheDocument();
+    clickButton(decreaseButton, 0);
+    expect(screen.getByText(`${textContent.quantityText}: 1`, { exact: false })).toBeInTheDocument();
+  });
 });

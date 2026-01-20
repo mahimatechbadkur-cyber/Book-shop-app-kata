@@ -6,7 +6,8 @@ export const textContent = {
   emptyCartText: 'Your cart is empty',
   addIcon: 'addIcon',
   quantityText: 'Quantity',
-  emptyCartSubtitle: 'Browse our amazing products!'
+  emptyCartSubtitle: 'Browse our amazing products!',
+  decreaseIcon: 'removeIcon',
 }
 
 export const dataTestIds = {

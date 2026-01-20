@@ -18,12 +18,26 @@ export const CartProvider = ({ children }) => {
       return [...prevCart, { ...product, quantity: 1 }];
     });
   };
+  const decreaseQuantity = (productId) => {
+    setCart((prevCart) => {
+      const item = prevCart.find(i => i.id === productId);
+      
+      if (item?.quantity > 1) {
+        return prevCart.map(item =>
+          item.id === productId ? { ...item, quantity: item.quantity - 1 } : item
+        );
+      }
+      
+      return prevCart.filter(item => item.id !== productId);
+    });
+  };
   
 
   return (
     <CartContext.Provider value={{ 
       cart, 
       addToCart, 
+      decreaseQuantity
     }}>
       {children}
     </CartContext.Provider>

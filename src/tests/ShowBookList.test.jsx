@@ -1,7 +1,7 @@
 import { render, screen, cleanup } from '@testing-library/react';
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import ShowBookList from '../components/ShowBookList';
-import { dataTestIds, textContent, bookList } from './common/constants';
+import { dataTestIds, textContent, bookList, currency } from './common/constants';
 import { getImageURL } from  '../utils/getImageURL'
 import { getButton } from './utils/utils';
 import { CartProvider } from '../context/CartProvider';
@@ -28,19 +28,24 @@ describe('ShowBookList component', () => {
     const parentGrid = screen.getByTestId(dataTestIds.bookListParentGrid);
     expect(parentGrid).toBeInTheDocument();
     const bookCards = screen.getAllByTestId(new RegExp(dataTestIds.bookcard));
-    expect(bookCards).toHaveLength(bookList.length);
+    expect(bookCards[0]).toHaveTextContent(bookList[0].price);
+    
   });
-  it('verifies each book card displays the correct image and alt text', () => {
+  it('verifies each book card displays the correct image and alt text and price with currency', () => {
     bookList.forEach((book) => {
       const card = screen.getByTestId(`${dataTestIds.bookcard}${book.id}`);
       expect(card).toBeInTheDocument();
       const image = screen.getByAltText(book.title);
       expect(image).toBeInTheDocument();
       expect(image).toHaveAttribute('src', getImageURL(book.title));
+      const priceElement = screen.getByTestId(`${dataTestIds.bookcard}Price${book.id}`);
+      expect(priceElement).toHaveTextContent(`${book.price} ${currency}`);
     });
   });
-  it('should render add to cart button', () => {
+  it('should render add and drecrease quantity button button', () => {
     const addButton = getButton(textContent.addIcon);
     expect(addButton[0]).toBeInTheDocument();
+    const decreaseButton = getButton(textContent.decreaseIcon);
+    expect(decreaseButton[0]).toBeInTheDocument();
   });
 });

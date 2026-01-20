@@ -3,22 +3,34 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import { CardActionArea } from '@mui/material';
-import { bookList, dataTestIds, textContent } from '../common/constants'; 
+import { bookList, dataTestIds, textContent, currency } from '../common/constants'; 
 import Divider from '@mui/material/Divider';
 import { getImageURL } from '../utils/getImageURL';
 import CardActions from '@mui/material/CardActions';
 import IconButton from '@mui/material/IconButton';
 import AddIcon from '@mui/icons-material/Add';
 import { useCart } from '../context/CartProvider';
+import RemoveIcon from '@mui/icons-material/Remove';
+import Stack from '@mui/material/Stack';
+import Box from '@mui/material/Box';
 
 
 function ShowBookList() {
-  const { addToCart } = useCart();
+  const { addToCart, decreaseQuantity } = useCart();
   const BookActions = ({ book }) => (
     <>
-      <IconButton onClick={() => addToCart(book)}  aria-label="addIcon" color="primary" size="small">
-        <AddIcon />
-      </IconButton>
+      <Stack direction="row" spacing={1}>
+        <IconButton onClick={() => addToCart(book)}  aria-label="addIcon" color="primary" size="small">
+          <AddIcon />
+        </IconButton>
+        <IconButton onClick={()=>decreaseQuantity(book.id)} aria-label="removeIcon" color="primary" size="small">
+          <RemoveIcon />
+        </IconButton>
+      </Stack>
+      <Box sx={{ flexGrow: 1 }} />
+      <Typography variant="caption" sx={{ fontWeight: 'bold' }} data-testid= {`${dataTestIds.bookcard}Price${book.id}`}>
+        {book.price} {currency}
+      </Typography>
     </>
   );
   const BookList = ({ book}) => (
