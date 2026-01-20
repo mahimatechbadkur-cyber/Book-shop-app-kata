@@ -25,6 +25,8 @@ describe('BookShopHomePage component', () => {
   });
 
   it('item should get added to cart on add button click', () => {
+    expect(screen.getByText(textContent.emptyCartText)).toBeInTheDocument();
+    expect(screen.getByText(textContent.emptyCartSubtitle).textContent).toBe(textContent.emptyCartSubtitle);
     const addButton = getButton(textContent.addIcon);
     expect(addButton[0]).toBeInTheDocument();
     clickButton(addButton, 0);

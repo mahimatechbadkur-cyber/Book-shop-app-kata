@@ -6,6 +6,7 @@ export const textContent = {
   emptyCartText: 'Your cart is empty',
   addIcon: 'addIcon',
   quantityText: 'Quantity',
+  emptyCartSubtitle: 'Browse our amazing products!'
 }
 
 export const dataTestIds = {
@@ -20,6 +21,8 @@ export const dataTestIds = {
   bookcard : 'book-card-',
   uniqueItemCount : 'uniqueItemCount',
   cartItem: 'cart-item-',
+  emptyCartView: 'emptyCartView',
+  emptyCartShoppingCartIcon: 'emptyCartShoppingCartIcon',
 }
 export const bookList = [
   { id: 1,title: 'Clean Code', price: 50 },

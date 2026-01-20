@@ -45,6 +45,7 @@ describe('ViewCartItems component', () => {
       </CartProvider>
     );
     expect(screen.getByText(textContent.emptyCartText)).toBeInTheDocument();
+    expect(screen.getByText(textContent.emptyCartSubtitle).textContent).toBe(textContent.emptyCartSubtitle);
   });
 
   it('should display the correct item count after adding an item', () => {

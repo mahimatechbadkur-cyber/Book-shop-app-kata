@@ -6,6 +6,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
+import EmptyCartView from './EmptyCartView';
 
 
 function ViewCartItems() {
@@ -51,7 +52,7 @@ function ViewCartItems() {
               <GetCartList cartItem={cartItem} key={cartItem.id} />
             ))}
           </>
-        ): textContent.emptyCartText }
+        ): <EmptyCartView /> }
       </Grid>
       
     </>
