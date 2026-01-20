@@ -10,6 +10,7 @@ import EmptyCartView from './EmptyCartView';
 import CardActions from '@mui/material/CardActions';
 import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Close';
+import ViewCartSummary from './ViewCartSummary';
 
 
 function ViewCartItems() {
@@ -57,6 +58,8 @@ function ViewCartItems() {
             {cart.map((cartItem) => (
               <GetCartList cartItem={cartItem} key={cartItem.id} />
             ))}
+            <Divider sx={{ boxShadow: 2, ml: 1, mr: 1 }}/>
+            <ViewCartSummary  />
           </>
         ): <EmptyCartView /> }
       </Grid>

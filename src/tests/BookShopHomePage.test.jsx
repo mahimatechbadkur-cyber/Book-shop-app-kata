@@ -24,7 +24,7 @@ describe('BookShopHomePage component', () => {
     expect(screen.getByTestId(dataTestIds.viewCartItemsPage)).toBeInTheDocument();
   });
 
-  it('item should get added to cart on add button click', () => {
+  it('item should get added to cart on add button click and show cartItem and summary', () => {
     expect(screen.getByText(textContent.emptyCartText)).toBeInTheDocument();
     expect(screen.getByText(textContent.emptyCartSubtitle).textContent).toBe(textContent.emptyCartSubtitle);
     const addButton = getButton(textContent.addIcon);
@@ -37,6 +37,9 @@ describe('BookShopHomePage component', () => {
     const itemCards = screen.getAllByTestId(new RegExp(dataTestIds.cartItem));
     expect(itemCards[0]).toHaveTextContent(bookList[0].title);
     expect(screen.getByText(`${textContent.quantityText}: 1`, { exact: false })).toBeInTheDocument();
+    expect(screen.getByTestId(dataTestIds.cartSubtotalText)).toHaveTextContent('50 EUR');
+    expect(screen.getByTestId(dataTestIds.cartDiscountText)).toHaveTextContent('0 EUR');
+    expect(screen.getByTestId(dataTestIds.cartTotalAmountText)).toHaveTextContent('50 EUR');
   });
   it('item quantity should get decreased on decrease button click',  async() => {
     const addButton = getButton(textContent.addIcon);

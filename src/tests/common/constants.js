@@ -9,6 +9,10 @@ export const textContent = {
   emptyCartSubtitle: 'Browse our amazing products!',
   decreaseIcon: 'removeIcon',
   removeCartButtonTitle : 'Remove',
+  totalAmountText : 'Total Amount',
+  orderSummaryText : 'Order Summary',
+  subtotalText: 'Subtotal',
+  discountedPriceText: 'Discounted Price',
 }
 
 export const dataTestIds = {
@@ -27,6 +31,11 @@ export const dataTestIds = {
   emptyCartShoppingCartIcon: 'emptyCartShoppingCartIcon',
   removeCartButtonTitle: 'removeCartButtonTitle',
   removeFromCartButton: 'removeFromCartButton',
+  viewCartSummaryPage: 'viewCartSummaryPage',
+  cartSubtotalText: 'cartSubtotalText',
+  cartDiscountText: 'cartDiscountText',
+  cartTotalAmountText: 'cartTotalAmountText',
+  orderSummaryText: 'orderSummaryText',
 }
 export const bookList = [
   { id: 1,title: 'Clean Code', price: 50 },
