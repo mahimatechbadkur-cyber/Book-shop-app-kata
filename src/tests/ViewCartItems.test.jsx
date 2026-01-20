@@ -60,6 +60,8 @@ describe('ViewCartItems component', () => {
     const itemCards = screen.getAllByTestId(new RegExp(dataTestIds.cartItem));
     expect(itemCards[0]).toHaveTextContent(bookList[0].title);
     expect(screen.getByText(`${textContent.quantityText}: 1`, { exact: false })).toBeInTheDocument();
+    const removeBtn = screen.getByTestId(dataTestIds.removeFromCartButton);
+    expect(removeBtn).toBeInTheDocument();
   });
   it('maintains count of 1 when adding the same item multiple times', () => {
     renderComponent(bookList[0]);
@@ -68,5 +70,18 @@ describe('ViewCartItems component', () => {
     clickButton(addButton, 0);
     clickButton(addButton, 0);
     expect(screen.getByText(`${textContent.quantityText}: 2`, { exact: false })).toBeInTheDocument();
+  });
+  it('remove cart item logic', () => {
+    renderComponent(bookList[0]);
+    const addButton = getButton(textContent.addIcon);
+    expect(addButton[0]).toBeInTheDocument();
+    clickButton(addButton, 0);
+    clickButton(addButton, 0);
+    expect(screen.getByText(`${textContent.quantityText}: 2`, { exact: false })).toBeInTheDocument();
+    
+    const removeBtn = screen.getAllByTestId(dataTestIds.removeFromCartButton);
+    expect(removeBtn[0]).toBeInTheDocument();
+    clickButton(removeBtn, 0);
+    expect(screen.getByText(textContent.emptyCartText)).toBeInTheDocument();
   });
 });

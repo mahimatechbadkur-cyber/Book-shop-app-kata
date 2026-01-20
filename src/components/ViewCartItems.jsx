@@ -7,10 +7,13 @@ import CardContent from '@mui/material/CardContent';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import EmptyCartView from './EmptyCartView';
+import CardActions from '@mui/material/CardActions';
+import Button from '@mui/material/Button';
+import CloseIcon from '@mui/icons-material/Close';
 
 
 function ViewCartItems() {
-  const { cart } = useCart();
+  const { cart, removeFromCart } = useCart();
   const GetCartList = ({ cartItem }) => (
     <Card sx={{ display: 'flex', bgcolor:'grey.100', m: 1 }} key={cartItem.id} data-testid={`${dataTestIds.cartItem}${cartItem.id}`} >
       <Box sx={{ display: 'flex', flexDirection: 'column' }}>
@@ -38,6 +41,9 @@ function ViewCartItems() {
             </Typography>
           </Stack>
         </CardContent>
+        <CardActions>
+          <Button  onClick={()=>removeFromCart(cartItem.id)} size="small"  startIcon={<CloseIcon  size="small"/>} sx={{p:0, pl:1}} data-testid={dataTestIds.removeFromCartButton}>{textContent.removeCartButtonTitle}</Button>
+        </CardActions>
       </Box>
     </Card>
   );

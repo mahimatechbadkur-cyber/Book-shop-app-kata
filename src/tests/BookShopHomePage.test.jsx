@@ -49,4 +49,16 @@ describe('BookShopHomePage component', () => {
     clickButton(decreaseButton, 0);
     expect(screen.getByText(`${textContent.quantityText}: 1`, { exact: false })).toBeInTheDocument();
   });
+  it('item should get removed from cart on remove button click',  () => {
+    const addButton = getButton(textContent.addIcon);
+    expect(addButton[0]).toBeInTheDocument();
+    clickButton(addButton, 0);
+    expect(screen.getByText(`${textContent.quantityText}: 1`, { exact: false })).toBeInTheDocument();
+    const removeBtn = screen.getAllByTestId(dataTestIds.removeFromCartButton);
+    expect(removeBtn[0]).toBeInTheDocument();
+    clickButton(removeBtn, 0);
+    expect(screen.getByText(textContent.emptyCartText)).toBeInTheDocument();
+  });
 });
+
+
