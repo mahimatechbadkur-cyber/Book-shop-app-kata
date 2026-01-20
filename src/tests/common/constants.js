@@ -45,3 +45,10 @@ export const bookList = [
   { id: 5, title: 'Working Effectively With Legacy Code', price: 50 },
 ];
 export const currency = 'EUR';
+
+export const DISCOUNT_TIERS = [
+  { size: 5, rate: 25 },
+  { size: 4, rate: 20 },
+  { size: 3, rate: 10 },
+  { size: 2, rate: 5 }
+];

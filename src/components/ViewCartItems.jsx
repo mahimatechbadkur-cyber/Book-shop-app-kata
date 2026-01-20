@@ -1,4 +1,3 @@
-import React from 'react'
 import { Grid, Typography, Divider } from '@mui/material';
 import { dataTestIds, textContent, currency} from '../common/constants';
 import { useCart } from '../context/CartProvider';
