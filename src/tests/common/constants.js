@@ -4,7 +4,8 @@ export const textContent = {
   bookListHeaderTitle : 'List of Available Books',
   cartItemListHeaderTitle : 'Your Cart',
   emptyCartText: 'Your cart is empty',
-  addIcon: 'addIcon'
+  addIcon: 'addIcon',
+  quantityText: 'Quantity',
 }
 
 export const dataTestIds = {
@@ -18,6 +19,7 @@ export const dataTestIds = {
   bookListInnerGrid : 'bookListInnerGrid',
   bookcard : 'book-card-',
   uniqueItemCount : 'uniqueItemCount',
+  cartItem: 'cart-item-',
 }
 export const bookList = [
   { id: 1,title: 'Clean Code', price: 50 },
@@ -26,3 +28,4 @@ export const bookList = [
   { id: 4, title: 'Test Driven Development by Example', price: 50 },
   { id: 5, title: 'Working Effectively With Legacy Code', price: 50 },
 ];
+export const currency = 'EUR';

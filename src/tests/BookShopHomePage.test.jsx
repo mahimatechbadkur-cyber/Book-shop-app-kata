@@ -1,7 +1,7 @@
 import { render, screen, cleanup } from '@testing-library/react';
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import BookShopHomePage from '../components/BookShopHomePage';
-import { dataTestIds, textContent } from './common/constants';
+import { dataTestIds, textContent, bookList, currency } from './common/constants';
 import { clickButton, getButton } from './utils/utils';
 import { CartProvider } from '../context/CartProvider';
 
@@ -28,7 +28,12 @@ describe('BookShopHomePage component', () => {
     const addButton = getButton(textContent.addIcon);
     expect(addButton[0]).toBeInTheDocument();
     clickButton(addButton, 0);
-    console.log("value is",screen.debug());
-    expect(screen.getByTestId(dataTestIds.uniqueItemCount)).toBeInTheDocument();
+    const title = screen.getByTestId(`${dataTestIds.cartItem}Title1`);
+    expect(title).toHaveTextContent(bookList[0].title);
+    const price = screen.getByTestId(`${dataTestIds.cartItem}Price1`);
+    expect(price).toHaveTextContent(bookList[0].price + ' ' + currency);
+    const itemCards = screen.getAllByTestId(new RegExp(dataTestIds.cartItem));
+    expect(itemCards[0]).toHaveTextContent(bookList[0].title);
+    expect(screen.getByText(`${textContent.quantityText}: 1`, { exact: false })).toBeInTheDocument();
   });
 });

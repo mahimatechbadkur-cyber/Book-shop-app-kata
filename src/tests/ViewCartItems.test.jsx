@@ -1,6 +1,6 @@
 import { render, screen, cleanup } from '@testing-library/react';
 import { describe, it, expect, afterEach } from 'vitest';
-import { dataTestIds, textContent } from './common/constants';
+import { dataTestIds, textContent, currency} from './common/constants';
 import ViewCartItems from '../components/ViewCartItems';
 import { useCart } from '../context/CartProvider';
 import { bookList } from '../common/constants';
@@ -50,10 +50,15 @@ describe('ViewCartItems component', () => {
   it('should display the correct item count after adding an item', () => {
     renderComponent(bookList[0]);
     const addButton = getButton(textContent.addIcon);
-    expect(addButton[0]).toBeInTheDocument();
+    expect(addButton[0]).toBeInTheDocument()
     clickButton(addButton, 0);
-    const count = screen.getByTestId(dataTestIds.uniqueItemCount);
-    expect(count).toHaveTextContent('1');
+    const title = screen.getByTestId(`${dataTestIds.cartItem}Title1`);
+    expect(title).toHaveTextContent(bookList[0].title);
+    const price = screen.getByTestId(`${dataTestIds.cartItem}Price1`);
+    expect(price).toHaveTextContent(bookList[0].price + ' ' + currency);
+    const itemCards = screen.getAllByTestId(new RegExp(dataTestIds.cartItem));
+    expect(itemCards[0]).toHaveTextContent(bookList[0].title);
+    expect(screen.getByText(`${textContent.quantityText}: 1`, { exact: false })).toBeInTheDocument();
   });
   it('maintains count of 1 when adding the same item multiple times', () => {
     renderComponent(bookList[0]);
@@ -61,7 +66,6 @@ describe('ViewCartItems component', () => {
     expect(addButton[0]).toBeInTheDocument();
     clickButton(addButton, 0);
     clickButton(addButton, 0);
-    const countElement = screen.getByTestId(dataTestIds.uniqueItemCount);
-    expect(countElement).toHaveTextContent('1');
+    expect(screen.getByText(`${textContent.quantityText}: 2`, { exact: false })).toBeInTheDocument();
   });
 });
